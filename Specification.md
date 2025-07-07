@@ -3,6 +3,7 @@ This is a specification that defines all values for **NCP**. While the examples 
 default ports:
 - client: 63924
 - server: 63925
+
 peer definition spec: {ip} {port} {node type}
 (node type denoted by server / client or s / c)
 version notation: 1.0 and not v1
@@ -23,7 +24,7 @@ the seperator is a single backslash anything else used and other nodes wont be a
 If you get a message that is the same as a message you have already received, discard it.  
 `id` = a unique identifier appended to a broadcasted message to make messages unique and avoid duplicates being discarded.
 ## generating a message id
-using the [[#uuid|peer uuid]] generate a message id:
+using the peer uuid generate a message id:
 ```python
 counter = 0 # on startup
 
