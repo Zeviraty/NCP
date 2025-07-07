@@ -5,7 +5,9 @@ default ports:
 - server: 63925
 
 peer definition spec: {ip} {port} {node type}
+
 (node type denoted by server / client or s / c)
+
 version notation: 1.0 and not v1
 # communication
 the seperator is a single backslash anything else used and other nodes wont be able to decode your message
