@@ -186,6 +186,7 @@ This hybrid approach balances:
 - `error\50\unexpected header format`
 - `error\51\reserved keyword used`
 - `error\52\malformed broadcast id`
+- `error\53\access denied`
 - `error\60\deprecated endpoint`
 - `error\61\version mismatch with node`
 
