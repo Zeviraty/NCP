@@ -9,16 +9,19 @@ version notation: 1.0 and not v1
 # communication
 the seperator is a single backslash anything else used and other nodes wont be able to decode your message
 ## peer nodeserver communication
-- header: pp2pn\\{node type}\\{version}
-- get peers: get\\peers
-- add peers: add\\peers\\{data}
-- close conn: close
+- header: ``pp2pn\{node type}\{version}``
+- get peers: ``get\peers``
+- get ip: ``get\ip`` (used for finding peers own ip)
+- get stats: ``get\stats``
+- add peers: ``add\peers\{data}``
+- close conn: ``close``
 ## p2p communication
 
-- broadcast: cast\\{id}\\{ip}:{port}\\{data}
+- broadcast: ``cast\{id}\{ip}:{port}\{data}``
     - `{ip}:{port}` is the sender's address so receiving peers can add them to their peer list.
-- dead peer announcement: dead{ip}:{port}
-	    - This informs peers that the given peer failed to respond or connect. Peers receiving this can choose to remove the specified peer from their lists.
+- dead peer announcement: ``dead\{ip}:{port}``
+	- This informs peers that the given peer failed to respond or connect. Peers receiving this can choose to remove the specified peer from their lists.
+- close conn: close
 # data transmission
 If you get a message that is the same as a message you have already received, discard it.  
 `id` = a unique identifier appended to a broadcasted message to make messages unique and avoid duplicates being discarded.
@@ -126,6 +129,15 @@ def decode_peers(encoded_bytes):
         tuples_list.append((ip_str, port, sc_char))
 
     return tuples_list
+```
+## statistics / dictionary encoding
+the statistics / dictionary encoding is very simple just turn it into json and encode it using utf-8
+```python
+def encode_dict(d: dict) -> bytes:
+    return json.dumps(d).encode('utf-8')
+
+def decode_dict(b: bytes) -> dict:
+    return json.loads(b.decode('utf-8'))
 ```
 # peers
 ## uuid
